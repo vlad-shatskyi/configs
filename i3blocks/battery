@@ -1,0 +1,18 @@
+info=$(acpi -b)
+percent=$(echo $info | awk 'BEGIN { FS = ","  }; { print $2 }' | tr -d '[:space:]' | tr -d '%')
+
+current=$(cat /sys/class/power_supply/BAT0/current_now)
+voltage=$(cat /sys/class/power_supply/BAT0/voltage_now)
+discharging_rate=$(($current * $voltage / 1000000000000))
+
+if [ "$percent" -lt 10 ]
+then
+    background_color="#F04848"
+else
+    background_color="#31363B"
+fi
+
+printf "<span background='$background_color'>"
+printf "<span foreground='#777'>Battery: </span>"
+echo -e "${percent}%, ${discharging_rate}W/h\c"
+printf "</span>"

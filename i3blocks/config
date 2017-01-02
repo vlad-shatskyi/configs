@@ -1,0 +1,59 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# background
+# border
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=/usr/lib/i3blocks/$BLOCK_NAME
+separator=false
+separator_block_width=30
+markup=pango
+
+[layout]
+command=echo "<span foreground='#777'>Layout: </span>$(setxkbmap -query | awk '/layout/{print $2}' | tr '[:lower:]' '[:upper:]')"
+interval=once
+signal=11
+
+[volume]
+command=echo "<span foreground='#777'>Volume: </span>$(amixer get Master | grep '%' | head -1 | awk '{print $5}' | tr -d '[]')"
+interval=1
+signal=10
+
+[microphone]
+command=echo "<span foreground='#777'>Microphone: </span>$(amixer get Capture | grep '%' | head -1 | awk '{print $5}' | tr -d '[]')"
+interval=1
+signal=12
+
+[wifi]
+command=echo "<span foreground='#777'>Wi-Fi: </span>$(cat /sys/class/net/wlp2s0/operstate | sed 's/.*/\u&/')"
+interval=1
+
+[battery]
+command=bash ~/.config/i3blocks/battery
+interval=1
+
+[time]
+command=echo "<span foreground='#777'>Date: </span>$(date '+%Y-%m-%d %A %H:%M:%S   ')"
+interval=1
