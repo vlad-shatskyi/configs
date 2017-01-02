@@ -12,7 +12,7 @@ else
     background_color="#31363B"
 fi
 
-printf "<span background='$background_color'>"
 printf "<span foreground='#777'>Battery: </span>"
+printf "<span background='$background_color'>"
 echo -e "${percent}%, ${discharging_rate}W/h\c"
 printf "</span>"
