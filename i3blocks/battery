@@ -1,3 +1,5 @@
+#!/bin/bash
+
 info=$(acpi -b)
 percent=$(echo $info | awk 'BEGIN { FS = ","  }; { print $2 }' | tr -d '[:space:]' | tr -d '%')
 
@@ -7,12 +9,12 @@ discharging_rate=$(($current * $voltage / 1000000000000))
 
 if [ "$percent" -lt 10 ]
 then
-    background_color="#F04848"
+    background_color="#BD5151"
 else
     background_color="#31363B"
 fi
 
 printf "<span foreground='#777'>Battery: </span>"
 printf "<span background='$background_color'>"
-echo -e "${percent}%, ${discharging_rate}W/h\c"
+echo -e " ${percent}%, ${discharging_rate}W/h \c"
 printf "</span>"

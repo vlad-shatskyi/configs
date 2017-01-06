@@ -1,0 +1,14 @@
+#!/bin/bash
+
+status=$(cat /sys/class/net/wlp2s0/operstate | sed 's/.*/\u&/')
+ping=$((timeout 0.1 ping 8.8.8.8) | tail -n 1 | awk 'BEGIN { FS = "="   } ; {print $NF}')
+
+if [ -n "$ping" ]; then
+    ping="00.0 ms"
+fi
+
+
+printf "<span foreground='#777'>Wi-Fi: </span>"
+printf "<span background='#31363B'>"
+echo -e " ${status}, ${ping}\c"
+printf "</span>"

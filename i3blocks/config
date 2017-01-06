@@ -47,7 +47,7 @@ interval=1
 signal=12
 
 [wifi]
-command=echo "<span foreground='#777'>Wi-Fi: </span>$(cat /sys/class/net/wlp2s0/operstate | sed 's/.*/\u&/')"
+command=bash ~/.config/i3blocks/wifi
 interval=1
 
 [battery]
