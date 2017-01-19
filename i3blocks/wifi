@@ -11,4 +11,5 @@ fi
 printf "<span foreground='#777'>Wi-Fi: </span>"
 printf "<span background='#31363B'>"
 echo -e " ${status}, ${ping}\c"
+#echo -e " ${status}\c"
 printf "</span>"

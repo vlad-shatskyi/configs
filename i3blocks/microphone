@@ -1,0 +1,16 @@
+#!/bin/bash
+
+percent=$(amixer get Capture | grep '%' | head -1 | awk '{print $5}' | tr -d '[]' | tr -d '%')
+
+if [ "$percent" -eq 0 ]
+then
+background_color="#BD5151"
+else
+background_color="#31363B"
+fi
+
+printf "<span foreground='#777'>Microphone: </span>"
+printf "<span background='$background_color'>"
+echo -e " ${percent}% \c"
+printf "</span>"
+

@@ -42,7 +42,7 @@ interval=1
 signal=10
 
 [microphone]
-command=echo "<span foreground='#777'>Microphone: </span>$(amixer get Capture | grep '%' | head -1 | awk '{print $5}' | tr -d '[]')"
+command=bash ~/.config/i3blocks/microphone
 interval=1
 signal=12
 
